@@ -1,0 +1,176 @@
+/*global*/
+
+:root {
+    font-size: 16px;
+    --selective-yellow: #FFB805;
+    --selective-yellow-darkened: #d79d00; /* Define a darker shade */
+    --red-error-color: #c60202; /* Define a suitable red for error indications */
+  }
+
+  body, html {
+    margin: 0;
+    padding: 0;
+  }
+
+  .chl-button {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    padding: 0.3rem 0.6875rem;
+    justify-content: center;
+    align-items: center;
+    align-self: stretch;
+    border-radius: 0.125rem;
+    background-color: #FFB805; /* Set the background color */
+    /* shadow/sm */
+    box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.05);
+    /*button font*/
+    font-family: 'IBM Plex Mono', monospace !important;
+    font-size: 0.75rem !important;
+    font-style: normal !important;
+    font-weight: 500 !important;
+    line-height: 1.125rem !important; /* 150% */
+    letter-spacing: 0.0375rem !important;
+    text-transform: capitalize !important;
+    border: transparent !important;
+
+    &:hover {
+        background-color: #FFB805; /* Set the background color */
+        box-shadow: 0px 4px 6px 0px rgba(0, 0, 0, 0.1);
+        border: #181316 (0px 2px 3px 0p);
+      }
+  }
+
+
+  
+  /*font styling begin */
+
+.h1 {
+    color: var(--smoky-black, #181316) !important;
+    font-family: IBM Plex Sans !important;
+    font-size: 2.5rem !important;
+    font-style: normal !important;
+    font-weight: 500 !important;
+    line-height: 2.75rem !important; /* 110% */
+    text-transform: capitalize !important;    
+}
+
+  .h4 {
+    font-family: IBM Plex Sans !important;
+    font-size: 1.25rem !important;
+    font-style: normal !important;
+    font-weight: 400 !important;
+    line-height: 1.875rem; /* 150% */
+    text-transform: capitalize;
+}
+
+  /*font styling end */
+
+ 
+
+.app-login {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem; 
+    background-image: url('./media/Untitled.png'); 
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+
+.login-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center vertically */
+    align-items: flex-start; /* Center horizontally */
+    width: 25%; /* Initial width */
+    max-width: 400px; /* Set a maximum width */
+    text-align: left; /* Align text left */
+    margin-top: 5%; /* Additional spacing at the top */
+  }
+
+  @media (max-width: 768px) {
+    /* Adjust width for smaller screens */
+    .login-box {
+      width: 80%; /* For example, adjust based on your needs */
+      max-width: none; /* Reset maximum width */
+    }
+  }
+
+.login-logo {
+    display: flex;
+    width: 90%;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+  }
+
+svg.sc-login-component {
+    display: flex;
+    width: 5.375rem;
+    height: 5.375rem;
+    padding: 1.19444rem 1.29231rem;
+    justify-content: center;
+}
+
+
+
+input.sc-login-component {
+    display: block;
+    width: 100%;
+    flex-wrap: wrap;
+    align-items: center;
+    align-self: stretch;
+    border-radius: 0.1875rem;
+    border: 1px solid var(--smoky-black, #181316);
+    transition: border-color 0.2s;
+    padding: 3% 2%;
+    box-sizing: border-box;
+    /*form input font styling*/
+    font-family: IBM Plex Mono;
+    font-size: 0.75rem;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 1.125rem; /* 150% */
+    letter-spacing: 0.0375rem;
+}
+
+input.sc-login-component:hover,
+input.sc-login-component:focus {
+  border-color: #D79D00; /* Change border color to darkened yellow on hover or focus */
+  outline: none; /* Suppress browser outline */
+}
+
+
+.input-row,
+.this.inputrow {
+  width: 100%;
+}
+
+/* frame around login form input* begin*/
+
+form.login-form.sc-login-component {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    align-self: stretch;
+    margin-top: 3rem;
+  }
+
+/* frame around login form input end */
+
+text.forgot-pass-link.sc-login-component {
+    color: var(--smoky-black, #181316);
+    text-align: center;
+    /* CHL Design System/Tags & breadcrumb */
+    font-family: IBM Plex Mono;
+    font-size: 0.75rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 1.125rem; /* 150% */
+    letter-spacing: 0.0375rem;
+    text-transform: capitalize;
+    margin-top: 8%;
+}

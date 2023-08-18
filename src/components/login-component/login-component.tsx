@@ -1,14 +1,16 @@
-import { Component, State, h } from '@stencil/core';
+import { Component, Prop, State, h, getAssetPath } from '@stencil/core';
 
 @Component({
   tag: 'login-component',
   styleUrl: 'login-component.css',
   scoped: true,
+  assetsDirs: ['media']
 })
 export class LoginComponent {
   @State() email: string;
   @State() password: string;
   @State() attemptingLogin: boolean = false;
+  @Prop() image = 'background-design.png';
 
   inputrow = 'input-row';
 
@@ -43,11 +45,28 @@ export class LoginComponent {
     }
   }
 
+  // Input focus
+  handleInputFocus(event: FocusEvent) {
+    const inputElement = event.target as HTMLInputElement;
+    inputElement.placeholder = ''; // Remove placeholder text
+  }
+
+  // Input blur
+  handleInputBlur(event: FocusEvent) {
+    const inputElement = event.target as HTMLInputElement;
+    if (!inputElement.value) {
+      inputElement.placeholder = 'Your Placeholder Text'; // Restore placeholder text if input is empty
+    }
+  }
+
   render() {
+    const backgroundImagePath = getAssetPath(`./assets/${this.image}`);
     return (
-      <div class="app-login flex flex-column justify-center items-center">
+     
+      <div class="app-login">
+        <img src={backgroundImagePath}/>
         <div class="login-logo">
-          <svg width="66" height="66" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
               fill-rule="evenodd"
               clip-rule="evenodd"
@@ -57,21 +76,39 @@ export class LoginComponent {
           </svg>
         </div>
         <div class="login-box">
-          <div class="head">Log in</div>
+          <div class="h1 head">Log in</div>
           <form class="login-form" onSubmit={e => this.handleSubmit(e)}>
-            <div class="input-row">
+            <div class="input-container input-row">
               <label>
-                <div>Email</div>
-                <input type="email" autocomplete="username" spellcheck={false} value={this.email} onInput={e => this.emailChanged(e)} />
+                <div class="h4">Email</div>
+                <input 
+                  type="email" 
+                  autocomplete="username" 
+                  spellcheck={false} 
+                  value={this.email} 
+                  onInput={e => this.emailChanged(e)} 
+                  placeholder="example@example.com"
+                  onFocus={this.handleInputFocus}
+                  onBlur={this.handleInputBlur}
+                  />
               </label>
             </div>
             <div class={this.inputrow}>
               <label>
-                <div>Password</div>
-                <input id="PasswordInput" type="password" autocomplete="current-password" value={this.password} onInput={e => this.passwordChanged(e)} />
+                <div class="h4">Password</div>
+                <input 
+                id="PasswordInput" 
+                type="password" 
+                autocomplete="current-password" 
+                value={this.password} 
+                onInput={e => this.passwordChanged(e)} 
+                placeholder="Type your password"
+                onFocus={this.handleInputFocus} 
+                onBlur={this.handleInputBlur} 
+                />
               </label>
             </div>
-            {this.attemptingLogin ? 'Loading...' : <input class="login-submit" type="submit" value="Log in" />}
+            {this.attemptingLogin ? 'Loading...' : <input class="chl-button login-submit " type="submit" value="Log in" />}
             <text class="forgot-pass-link">Forgot your password?</text>
           </form>
         </div>
