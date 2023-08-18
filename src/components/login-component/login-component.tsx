@@ -1,14 +1,16 @@
-import { Component, State, h } from '@stencil/core';
+import { Component, Prop, State, h, getAssetPath } from '@stencil/core';
 
 @Component({
   tag: 'login-component',
   styleUrl: 'login-component.css',
   scoped: true,
+  assetsDirs: ['media']
 })
 export class LoginComponent {
   @State() email: string;
   @State() password: string;
   @State() attemptingLogin: boolean = false;
+  @Prop() image = 'background-design.png';
 
   inputrow = 'input-row';
 
@@ -43,9 +45,26 @@ export class LoginComponent {
     }
   }
 
+  // Input focus
+  handleInputFocus(event: FocusEvent) {
+    const inputElement = event.target as HTMLInputElement;
+    inputElement.placeholder = ''; // Remove placeholder text
+  }
+
+  // Input blur
+  handleInputBlur(event: FocusEvent) {
+    const inputElement = event.target as HTMLInputElement;
+    if (!inputElement.value) {
+      inputElement.placeholder = 'Your Placeholder Text'; // Restore placeholder text if input is empty
+    }
+  }
+
   render() {
+    const backgroundImagePath = getAssetPath(`./assets/${this.image}`);
     return (
+     
       <div class="app-login">
+        <img src={backgroundImagePath}/>
         <div class="login-logo">
           <svg fill="none" xmlns="http://www.w3.org/2000/svg">
             <path
@@ -69,6 +88,8 @@ export class LoginComponent {
                   value={this.email} 
                   onInput={e => this.emailChanged(e)} 
                   placeholder="example@example.com"
+                  onFocus={this.handleInputFocus}
+                  onBlur={this.handleInputBlur}
                   />
               </label>
             </div>
@@ -82,6 +103,8 @@ export class LoginComponent {
                 value={this.password} 
                 onInput={e => this.passwordChanged(e)} 
                 placeholder="Type your password"
+                onFocus={this.handleInputFocus} 
+                onBlur={this.handleInputBlur} 
                 />
               </label>
             </div>
